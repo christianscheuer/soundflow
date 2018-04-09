@@ -57,3 +57,13 @@ sf.ui.proTools.trackSelectByName({
 	names: stems
 });
 ```
+
+# Miscellaneous scripts
+
+## Control your Mac's volume with a Midi Event (eg. fader value)
+```js
+var vol = Math.floor(Number(event.trigger.midiBytes[2]) / 127.0 * 100.0);
+sf.system.execAppleScript({
+	script: 'set volume output volume ' + vol + ' --100%'
+});
+```
