@@ -58,6 +58,23 @@ sf.ui.proTools.trackSelectByName({
 });
 ```
 
+## Select Trim mode for all tracks
+```js
+//Hold down option key
+sf.keyboard.modifiers({
+    isOption: true
+});
+
+//Set automation mode to trim
+sf.ui.proTools.selectedTrack.proToolsAutomationModeSet({
+    automationModeName: 'trim',
+    trackTargetMode: 'AllTracks'
+});
+
+//Release option key
+sf.keyboard.modifiers();
+```
+
 # Miscellaneous scripts
 
 ## Control your Mac's volume with a Midi Event (eg. fader value)
@@ -65,5 +82,53 @@ sf.ui.proTools.trackSelectByName({
 var vol = Math.floor(Number(event.trigger.midiBytes[2]) / 127.0 * 100.0);
 sf.system.execAppleScript({
 	script: 'set volume output volume ' + vol + ' --100%'
+});
+```
+
+## Toggle mute/unmute for your Mac
+```js
+sf.system.execAppleScript({
+    script:
+        'set curVolume to get volume settings\n' +
+        'if output muted of curVolume is false then\n' +
+        '	set volume with output muted\n' +
+        'else\n' +
+        '	set volume without output muted\n' +
+        'end if'
+});
+```
+
+## Set clipboard text
+```js
+sf.clipboard.setText({
+    text: 'One two three'
+});
+```
+
+## Wait for clipboard text for 2 seconds and store in text variable
+```js
+var text = sf.clipboard.waitForText({
+    timeoutMs: 2000    
+}).text;
+```
+
+## Send midi to SoundFlow Custom Midi Output
+```js
+sf.midi.send({
+    midiBytes: [
+        0x90, /* 0x90: Note On */
+        48,   /* 48:   C3 */
+        80    /* 80:   Velocity */
+        ],
+    outputNum: 1  /* Send out via SoundFlow Custom Midi Output 1 */
+});
+```
+
+## Assign a specific color to the selected clip
+```js
+sf.ui.proTools.colorsSelect({
+    colorBrightness: 'Medium',
+    colorNumber: 4,
+    colorTarget: 'ClipsInTracks'
 });
 ```
