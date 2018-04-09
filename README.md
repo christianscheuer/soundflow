@@ -58,6 +58,26 @@ sf.ui.proTools.trackSelectByName({
 });
 ```
 
+## Toggle 'Input monitor mode' for all your stems
+```js
+//Define the track names of our stems
+var stems = ['DX STEM', 'FOLEY STEM', 'FG STEM', 'BG STEM', 'MX STEM'];
+
+//Show our stems if they aren't already showing
+sf.ui.proTools.trackShowByName({
+	names: stems
+});
+
+//Select our stems
+sf.ui.proTools.trackSelectByName({
+	names: stems
+});
+
+sf.keyboard.press({
+	keys: 'shift+i'
+});
+```
+
 ## Select Trim mode for all tracks
 ```js
 //Hold down option key
