@@ -75,6 +75,16 @@ sf.ui.proTools.selectedTrack.proToolsAutomationModeSet({
 sf.keyboard.modifiers();
 ```
 
+## Assign channel strip to insert slot 1 of the selected mono tracks
+```js
+sf.ui.proTools.selectedTrack.insertOrSendSelect({
+    insertOrSend: 'Insert',
+    pluginNumber: 1,
+    pluginPath: ['plug-in', 'EQ', 'Channel Strip (mono)'],
+    selectForAllSelectedTracks: true
+});
+```
+
 # Miscellaneous scripts
 
 ## Control your Mac's volume with a Midi Event (eg. fader value)
