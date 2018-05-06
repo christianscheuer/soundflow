@@ -162,3 +162,43 @@ sf.ui.proTools.colorsSelect({
     colorTarget: 'ClipsInTracks'
 });
 ```
+
+## Close all open tabs in iZotope RX6 Audio Editor
+```js
+
+sf.ui.izotope.appActivateMainWindow();
+
+var mainWin = sf.ui.izotope.windows[0];
+var mainWinGrp = mainWin.getFirstOf('AXGroup');
+
+function hasOpenTabs()
+{
+    try {
+        return !!mainWinGrp.getFirstOf('AXRadioButton');
+    }
+    catch (err) {
+        return false;
+    }
+}
+
+while(hasOpenTabs())
+{
+    sf.keyboard.press({
+        keys: 'cmd+w'
+    });
+
+    var dlgRes = sf.ui.izotope.dialogWaitForManual({
+        dialogTitle: '',
+        timeout: 500,
+    }, function(err){});
+
+    if (dlgRes.dialog)
+    {
+        dlgRes.dialog.dialogClickButton({
+            buttonTitle: 'No'
+        });
+    }
+
+    sf.wait({ intervalMs: 200 });
+}
+```
