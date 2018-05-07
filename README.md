@@ -202,3 +202,30 @@ while(hasOpenTabs())
     sf.wait({ intervalMs: 200 });
 }
 ```
+
+## Send clips to iZotope via iZotope RX 6 Connect
+```js
+sf.ui.proTools.audioSuiteActivatePlugin({
+    category: 'Noise Reduction',
+    name: 'RX 6 Connect'
+});
+
+var win = sf.ui.proTools.getFloatingWindowWithTitleStartingWith("Audio Suite: RX 6 Connect");
+
+win.getFirstWithTitle('Processing Input Mode').menuOpenPopupMenuFromElement().popupMenu.menuClickPopupMenu({
+    menuName: 'clip by clip'
+});
+
+win.getFirstWithTitle("Analyze").elementClick();    
+```
+
+## Send back to PT from iZotope via Connect
+```js
+sf.ui.izotope.mainWindow.getFirstWithDescription('RX6 Main Window').getFirstWithDescription("Shuttle").elementClick();
+```
+
+## Render into PT track from iZotope Connect
+```js
+var win = sf.ui.proTools.getFloatingWindowWithTitleStartingWith("Audio Suite: RX 6 Connect");
+win.getFirstWithTitle("Render").elementClick();
+```
