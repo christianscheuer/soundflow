@@ -1,5 +1,5 @@
 
-##SoundFlow script for reconform tests
+## SoundFlow script for reconform tests
 ```js
 function readEdl(path)
 {
