@@ -10,15 +10,12 @@ SoundFlow allows you to write custom scripts to automate your Mac.
 To get you started, here's a list of some scripts that we find usable in our daily work as sound designers in Pro Tools.
 
 
+## Keyboard control
+[Keyboard control](./keyboard/)
 
-## Go to a specific memory location
-```js
-sf.ui.proTools.memoryLocationsGoto({
-	memoryLocationNumber: 11,
-	restoreWindowOpenState: true,
-	useKeyboard: true,
-});
-```
+## Memory Location scripts
+[Memory Location Scripts](./ui/proTools/memory-locations.md)
+
 
 ## Toggle volume automation for all tracks via a keyboard press:
 ```js
