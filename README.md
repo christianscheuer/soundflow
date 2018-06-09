@@ -7,14 +7,17 @@ This repo contains custom scripts, documentation, samples etc. for SoundFlow - t
 # Custom scripts
 
 SoundFlow allows you to write custom scripts to automate your Mac.
-To get you started, here's a list of some scripts that we find usable in our daily work as sound designers in Pro Tools.
+To get you started, here's a list of some scripts that we find usable in our daily work as sound designers in Pro Tools and other apps.
 
 
-## Keyboard control
-[Keyboard control](./keyboard/)
+## Pro Tools (sf.ui.proTools.*)
+[Pro Tools scripts](./ui/proTools/)
 
-## Memory Location scripts
-[Memory Location Scripts](./ui/proTools/memory-locations.md)
+## Keyboard (sf.keyboard.*)
+[Keyboard scripts](./keyboard/)
+
+## Clipboard (sf.clipboard.*)
+[Clipboard scripts](./clipboard/)
 
 
 ## Toggle volume automation for all tracks via a keyboard press:
@@ -32,12 +35,7 @@ sf.ui.proTools.audioSuiteActivatePlugin({
 });
 ```
 
-## Open the "Pro Tools" app with a shell script:
-```js
-sf.system.exec({
-	commandLine: 'open "/Applications/Pro Tools.app"'
-});
-```
+
 
 ## Show + Select our stems
 ```js
@@ -123,20 +121,6 @@ sf.system.execAppleScript({
         '	set volume without output muted\n' +
         'end if'
 });
-```
-
-## Set clipboard text
-```js
-sf.clipboard.setText({
-    text: 'One two three'
-});
-```
-
-## Wait for clipboard text for 2 seconds and store in text variable
-```js
-var text = sf.clipboard.waitForText({
-    timeoutMs: 2000    
-}).text;
 ```
 
 ## Send midi to SoundFlow Custom Midi Output
