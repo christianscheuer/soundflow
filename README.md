@@ -144,30 +144,17 @@ sf.ui.proTools.colorsSelect({
 });
 ```
 
-## Close all open tabs in iZotope RX6 Audio Editor
+## Close all open files in iZotope RX6 Audio Editor and don't save
 ```js
-
 sf.ui.izotope.appActivateMainWindow();
 
-var mainWin = sf.ui.izotope.windows[0];
+var mainWin = sf.ui.izotope.mainWindow;
 var mainWinGrp = mainWin.getFirstOf('AXGroup');
 
-function hasOpenTabs()
-{
-    try {
-        return !!mainWinGrp.getFirstOf('AXRadioButton');
-    }
-    catch (err) {
-        return false;
-    }
-}
+sf.ui.izotope.menuClick({ menuPath: ['File', 'Close All'] });
 
-while(hasOpenTabs())
+while(true)
 {
-    sf.keyboard.press({
-        keys: 'cmd+w'
-    });
-
     var dlgRes = sf.ui.izotope.dialogWaitForManual({
         dialogTitle: '',
         timeout: 500,
@@ -179,6 +166,8 @@ while(hasOpenTabs())
             buttonTitle: 'No'
         });
     }
+    else
+        break;
 
     sf.wait({ intervalMs: 200 });
 }
